@@ -10,7 +10,7 @@ import qa.io.mzowysky.automation.petstore.config.SpringIntegrationTest;
 
 @RunWith(Cucumber.class)
 
-@CucumberOptions(tags = "@upload-image",
+@CucumberOptions(tags = " @delete-purchase",
 		plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json"},
 		monochrome = true,
 		features = "src/test/resources",
