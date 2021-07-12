@@ -14,6 +14,7 @@ public class StoreAction {
 	
 	private ValidatableResponse request;
 	private final String path="store/";
+	private final String path2="store/order/";
 	
 	@Autowired
 	private EnvConfig envConfig;
@@ -22,7 +23,7 @@ public class StoreAction {
 		envConfig.init();
 		
 		request = RestAssured.given().accept(envConfig.getAccept()).and()
-				.baseUri(envConfig.getBaseurl()).when().get(path + "invetory").then()
+				.baseUri(envConfig.getBaseurl()).when().get(path + "inventory").then()
 				.statusCode(200);
 		
 		return request;
@@ -38,22 +39,21 @@ public class StoreAction {
 		return request;
 	}
 	
-	public ValidatableResponse findStore() throws IOException {
+	public ValidatableResponse findStore(Integer petId) throws IOException {
 		envConfig.init();
 		
 		request = RestAssured.given().accept(envConfig.getAccept()).and().baseUri(envConfig.getBaseurl())
-				.when().get(path).then().statusCode(200);
+				.when().get(path2 + petId).then().statusCode(200);
 		
 		return request;
 	}
 	
-	public ValidatableResponse deleteStore() throws IOException {
+	public ValidatableResponse deleteStore(Integer id) throws IOException {
 		envConfig.init();
 		
 		request = RestAssured.given().accept(envConfig.getAccept()).and()
-				.baseUri(envConfig.getBaseurl()).when().delete(path).then().statusCode(200);
+				.baseUri(envConfig.getBaseurl()).when().delete(path2 + id).then().statusCode(200);
 		
 		return request;
 	}
 }
-
